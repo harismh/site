@@ -88,25 +88,25 @@
     [:div.flex.flex-col.gap-2
      (heading {:c "Currently"})
      [:div.flex.flex-row 
-      [:p.text-zinc-900.dark:text-zinc-100 
+      [:p.text-zinc-400.mr-6
        {:class "w-1/5"} 
        "Reading"]
       (paragraph {:c "Shape, the Hidden Geometry of Information, 
                       Strategy, Biology, Democracy, and Everything 
-                      Else by Jordan Ellenberg."
+                      Else by Jordan Ellenberg"
                   :cl "w-4/5"})]
      [:div.flex.flex-row 
-      [:p.text-zinc-900.dark:text-zinc-100 
+      [:p.text-zinc-400.mr-6
        {:class "w-1/5"} 
        "Watching"]
       (paragraph {:c "Attention in LLM Transformers, 
-                      Visually Explained by 3Blue1Brown."
+                      Visually Explained by 3Blue1Brown"
                   :cl "w-4/5"})]
      [:div.flex.flex-row 
-      [:p.text-zinc-900.dark:text-zinc-100 
+      [:p.text-zinc-400.mr-6
        {:class "w-1/5"} 
        "Listening"]
-      (paragraph {:c "Tears of the Star by Casiopea."
+      (paragraph {:c "Tears of the Star by Casiopea"
                   :cl "w-4/5"})]]
     (section
       (heading {:c "Work Experience"})
