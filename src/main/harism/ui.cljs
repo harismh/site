@@ -69,7 +69,7 @@
     [section
      (paragraph 
        {:c [:span "Hello, my name is Haris. Being a software engineer for
-                   over 8 years, I had many oppertunities to work
+                   over 8 years, I had many opportunities to work
                    on a variety of projects. Notably, as CTO at " 
             (anchor {:href "https://flip.cards"
                      :c "FLIP"
