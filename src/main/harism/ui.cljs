@@ -46,6 +46,7 @@
                      "resize"
                      (fn []
                        (let [[width' height'] (canvas-dims)]
+                         (.set (.-position camera) 0 0 (* width' 0.05))
                          (set! (.-aspect camera) (/ width' height'))
                          (.updateProjectionMatrix camera)
                          (.setSize renderer width' height'))))]
