@@ -157,6 +157,13 @@
                 {:c "Data-driven UIs w/ Dumdom"
                  :cl "underline underline-offset-4"
                  :href "https://github.com/harismh/todomvc-dumdom"
+                 :target "_blank"})})]
+       [:li
+        (paragraph 
+          {:c (anchor 
+                {:c "Joy of Clojure Code Notes"
+                 :cl "underline underline-offset-4"
+                 :href "https://github.com/harismh/joy-notes"
                  :target "_blank"})})]])
     (section
       (heading {:c "Connect"})
