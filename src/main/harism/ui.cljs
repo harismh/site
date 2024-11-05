@@ -61,6 +61,20 @@
         (three/animate! orbit renderer scene camera)
         :ok))))
 
+(def spinner-fs
+  [:div.grid.h-screen.place-items-center.bg-zinc-50.dark:bg-zinc-900
+   {:aria-label "Loading..." :role "status"}
+   [:svg.h-10.w-10.stroke-zinc-900.dark:stroke-zinc-100 
+    {:view-box "0 0 256 256"}
+    [:line {:x1 "128", :y1 "32", :x2 "128", :y2 "64", :stroke-linecap "round", :stroke-linejoin "round", :stroke-width "20"}]
+    [:line {:x1 "195.9", :y1 "60.1", :x2 "173.3", :y2 "82.7", :stroke-linecap "round", :stroke-linejoin "round", :stroke-width "20"}]
+    [:line {:x1 "224", :y1 "128", :x2 "192", :y2 "128", :stroke-linecap "round", :stroke-linejoin "round", :stroke-width "20"} ]
+    [:line {:x1 "195.9", :y1 "195.9", :x2 "173.3", :y2 "173.3", :stroke-linecap "round", :stroke-linejoin "round", :stroke-width "20"}]
+    [:line {:x1 "128", :y1 "224", :x2 "128", :y2 "192", :stroke-linecap "round", :stroke-linejoin "round", :stroke-width "20"} ]
+    [:line {:x1 "60.1", :y1 "195.9", :x2 "82.7", :y2 "173.3", :stroke-linecap "round", :stroke-linejoin "round", :stroke-width "20"}]
+    [:line {:x1 "32", :y1 "128", :x2 "64", :y2 "128", :stroke-linecap "round", :stroke-linejoin "round", :stroke-width "20"}]
+    [:line {:x1 "60.1", :y1 "60.1", :x2 "82.7", :y2 "82.7", :stroke-linecap "round", :stroke-linejoin "round", :stroke-width "20"} ]]])
+
 (def todo
   [:article (paragraph {:c "Under construction."})])
 
@@ -89,7 +103,7 @@
     [:div.flex.flex-col.gap-2
      (heading {:c "Currently"})
      [:div.flex.flex-row 
-      [:p.text-zinc-400.mr-6
+      [:p.text-zinc-500.dark:text-zinc-400.mr-6
        {:class "w-1/5"} 
        "Reading"]
       (paragraph {:c "Shape, the Hidden Geometry of Information, 
@@ -97,14 +111,14 @@
                       Else by Jordan Ellenberg"
                   :cl "w-4/5"})]
      [:div.flex.flex-row 
-      [:p.text-zinc-400.mr-6
+      [:p.text-zinc-500.dark:text-zinc-400.mr-6
        {:class "w-1/5"} 
        "Watching"]
       (paragraph {:c "Attention in LLM Transformers, 
                       Visually Explained by 3Blue1Brown"
                   :cl "w-4/5"})]
      [:div.flex.flex-row 
-      [:p.text-zinc-400.mr-6
+      [:p.text-zinc-500.dark:text-zinc-400.mr-6
        {:class "w-1/5"} 
        "Listening"]
       (paragraph {:c "Tears of the Star by Casiopea"
@@ -114,19 +128,19 @@
       [:ul
        [:li.flex.items-center.justify-between 
         (paragraph {:c "Chief Technology Officer"})
-        [:div.flex.text-zinc-400.gap-4
+        [:div.flex.text-zinc-500.dark:text-zinc-400.gap-4
          (anchor {:href "https://flip.cards" 
                   :target "_blank" 
                   :c "FLIP" 
-                  :cl "text-zinc-400"})
+                  :cl "underline underline-offset-4 text-zinc-500 dark:text-zinc-400"})
          [:p "2021-2024"]]]
        [:li.flex.items-center.justify-between 
         (paragraph {:c "Client Development Lead"})
-        [:div.flex.text-zinc-400.gap-4
+        [:div.flex.text-zinc-500.dark:text-zinc-400.gap-4
          [:p "2020-2021"]]]
        [:li.flex.items-center.justify-between 
         (paragraph {:c "Fullstack React Developer"})
-        [:div.flex.text-zinc-400.gap-4
+        [:div.flex.text-zinc-500.dark:text-zinc-400.gap-4
          [:p "2019-2020"]]]]
       (paragraph 
         {:c [:span "Download full resume " 
@@ -215,8 +229,8 @@
     [:section
      (render-route (deref *current-route))]
     [:footer.flex.flex-row.gap-4.justify-end
-     [:p.text-sm.font-sans.text-zinc-400 "© 2024"]
-     [:img {:src "resources/signature.svg"}]]]
+     [:p.text-sm.font-sans.text-zinc-500.dark:text-zinc-400 "© 2024"]
+     [:img {:height 20 :width 100 :src "resources/signature.svg" :alt "harism signature"}]]]
    [:div.basis-full.bg-zinc-100.dark:bg-zinc-950.text-zinc-900.hidden.lg:flex.justify-center
     {:class "sm:basis-1/2"}
     [:canvas#three-canvas.sticky

@@ -1,5 +1,6 @@
 (ns harism.main
   (:require
+   ["react" :as react]
    ["react-dom/client" :refer [createRoot]]
    [reagent.core :as r]
    [harism.util :as util]
@@ -11,7 +12,10 @@
 
 (defn render-main! []
   (.render root 
-    (r/as-element [ui/main *current-route])))
+    (r/as-element 
+      [:> react/Suspense 
+       {:fallback (r/as-element ui/spinner-fs)}
+       [ui/main *current-route]])))
 
 (defn re-render! ^:dev/after-load []
   (render-main!))
