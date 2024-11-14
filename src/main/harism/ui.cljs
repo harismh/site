@@ -153,13 +153,6 @@
       [:li
        (paragraph
         {:c (anchor
-             {:c "React Native Web Track Player"
-              :cl "underline underline-offset-4"
-              :href "https://github.com/harismh/react-native-webview-track-player"
-              :target "_blank"})})]
-      [:li
-       (paragraph
-        {:c (anchor
              {:c "ClojureScript Project Starter"
               :cl "underline underline-offset-4"
               :href "https://github.com/harismh/utsb-cljs-starter"
@@ -177,6 +170,20 @@
              {:c "Joy of Clojure Code Notes"
               :cl "underline underline-offset-4"
               :href "https://github.com/harismh/joy-notes"
+              :target "_blank"})})]
+      [:li
+       (paragraph
+        {:c (anchor
+             {:c "React Native Web Track Player"
+              :cl "underline underline-offset-4"
+              :href "https://github.com/harismh/react-native-webview-track-player"
+              :target "_blank"})})]
+      [:li
+       (paragraph
+        {:c (anchor
+             {:c "Tokyo Twilight VS Code Theme"
+              :cl "underline underline-offset-4"
+              :href "https://github.com/harismh/tokyo-twilight"
               :target "_blank"})})]])
     (section
      (heading {:c "Connect"})
