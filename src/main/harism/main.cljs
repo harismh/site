@@ -10,7 +10,8 @@
 
 (defonce *current-route (r/atom nil))
 
-(defn render-main! ^:dev/after-load []
+(defn ^:dev/after-load render-main!
+  []
   (.render root
            (r/as-element
             [:> react/Suspense
