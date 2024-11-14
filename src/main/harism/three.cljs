@@ -1,8 +1,8 @@
 (ns harism.three
-  (:require 
-   ["three" :refer [Scene 
+  (:require
+   ["three" :refer [Scene
                     PerspectiveCamera
-                    TorusKnotGeometry 
+                    TorusKnotGeometry
                     MeshNormalMaterial
                     Mesh
                     WebGLRenderer]]
@@ -14,18 +14,18 @@
 (defn camera [fov aspect near far]
   (PerspectiveCamera. fov aspect near far))
 
-(defn torus-knot-geometry 
+(defn torus-knot-geometry
   [{:keys [radius tube tubular-segments radial-segments p q]}]
-  (TorusKnotGeometry. 
-    radius 
-    tube 
-    tubular-segments 
-    radial-segments 
-    (or p 2) 
-    (or q 3)))
-  
+  (TorusKnotGeometry.
+   radius
+   tube
+   tubular-segments
+   radial-segments
+   (or p 2)
+   (or q 3)))
+
 (defn mesh-material []
- (MeshNormalMaterial.))
+  (MeshNormalMaterial.))
 
 (defn mesh [geometry material]
   (Mesh. geometry material))
@@ -46,5 +46,5 @@
 (defn animate! [orbit renderer scene camera]
   (.update orbit)
   (.render renderer scene camera)
-  (js/requestAnimationFrame 
-    #(animate! orbit renderer scene camera))) 
+  (js/requestAnimationFrame
+   #(animate! orbit renderer scene camera))) 

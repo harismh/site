@@ -1,7 +1,7 @@
 (ns harism.util)
 
 (defn parse-url [url]
-  (let [[_ s d p q f] 
+  (let [[_ s d p q f]
         (re-matches #"([a-z]+)://([^/?#]+)(/[^?#]*)?(\?[^#]*)?(#.*)?" url)]
     {:schema s
      :domain d
