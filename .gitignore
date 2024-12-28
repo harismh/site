@@ -12,6 +12,7 @@ node_modules
 .clj-kondo/*
 !.clj-kondo/config.edn
 .lsp
+.nrepl-port
 
 # macOS artifacts
 .DS_Store
