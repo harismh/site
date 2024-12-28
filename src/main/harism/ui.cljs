@@ -27,6 +27,11 @@
   [(- (/ (.-innerWidth js/window) 2) 50)
    (/ (.-innerHeight js/window) 1.5)])
 
+(defn color-scheme []
+  (if (.-matches (.matchMedia js/window "(prefers-color-scheme: dark)"))
+    :dark
+    :light))
+
 (defn render-knot! [{:keys [width height canvas-id]}]
   (when (js/document.getElementById canvas-id)
     (let [scene    (three/scene)
@@ -41,6 +46,11 @@
           material (three/mesh-material)
           mesh     (three/mesh geometry material)
           renderer (three/renderer width height canvas-id)
+          color    (case (color-scheme) 
+                     :dark "rgb(244, 244, 245)"
+                     "rgb(24, 24, 27)")
+          effect   (three/ascii-effect {:color color})
+          composer (three/composer renderer scene camera effect) 
           orbit    (three/orbit-controls camera (.-domElement renderer))
           _        (js/window.addEventListener
                     "resize"
@@ -49,7 +59,7 @@
                         (.set (.-position camera) 0 0 (* width' 0.05))
                         (set! (.-aspect camera) (/ width' height'))
                         (.updateProjectionMatrix camera)
-                        (.setSize renderer width' height'))))]
+                        (.setSize composer width' height'))))]
       (.set (.-position camera) 0 0 (* width 0.05))
       (set! (.-autoRotate orbit) true)
       (set! (.-autoRotateSpeed orbit) 2)
@@ -57,7 +67,7 @@
       (set! (.-enableDamping  orbit) true)
       (.add scene camera)
       (.add scene mesh)
-      (three/animate! orbit renderer scene camera)
+      (three/animate! orbit composer scene camera)
       :ok)))
 
 (def spinner-fs
