@@ -115,22 +115,19 @@
       [:p.text-zinc-500.dark:text-zinc-400.mr-6
        {:class "w-1/5"}
        "Reading"]
-      (paragraph {:c "Shape, the Hidden Geometry of Information, 
-                      Strategy, Biology, Democracy, and Everything 
-                      Else by Jordan Ellenberg"
+      (paragraph {:c "The City and its Uncertain Walls by Haruki Murakami"
                   :cl "w-4/5"})]
      [:div.flex.flex-row
       [:p.text-zinc-500.dark:text-zinc-400.mr-6
        {:class "w-1/5"}
        "Watching"]
-      (paragraph {:c "Attention in LLM Transformers, 
-                      Visually Explained by 3Blue1Brown"
+      (paragraph {:c "Building GPT by Andrej Karpathy"
                   :cl "w-4/5"})]
      [:div.flex.flex-row
       [:p.text-zinc-500.dark:text-zinc-400.mr-6
        {:class "w-1/5"}
        "Listening"]
-      (paragraph {:c "Tears of the Star by Casiopea"
+      (paragraph {:c "Clock of the Long Now by Sungazer"
                   :cl "w-4/5"})]]
     (section
      (heading {:c "Work Experience"})
