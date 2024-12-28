@@ -33,13 +33,17 @@
     (set! (.-href a$) (str "mailto:" "hello@harism.dev"))
     (set! (.-innerText a$) (str "hello" "@harism.dev."))))
 
+(defn render-knot! []
+  (let [[width height] (ui/canvas-dims)]
+    (ui/render-knot! {:canvas-id "three-canvas"
+                      :width width
+                      :height height})))
+
 (defn ^:export init []
   (init-router!)
   (render-main!)
   (js/setTimeout
    (fn []
      (hydrate-email!)
-     (ui/render-knot! {:canvas-id "three-canvas"
-                       :width (get (ui/canvas-dims) 0)
-                       :height (get (ui/canvas-dims) 1)}))
+     (render-knot!)) 
    100))
