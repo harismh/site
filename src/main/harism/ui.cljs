@@ -24,8 +24,8 @@
   `[:div.flex.flex-col.gap-4 ~@body])
 
 (defn canvas-dims []
-  [(- (/ (.-innerWidth js/window) 2) 50)
-   (/ (.-innerHeight js/window) 1.5)])
+  [(- (/ (.-innerWidth js/window) 2) 25)
+   (/ (.-innerHeight js/window) 1.75)])
 
 (defn color-scheme []
   (if (.-matches (.matchMedia js/window "(prefers-color-scheme: dark)"))
@@ -247,5 +247,5 @@
    [:div.basis-full.bg-zinc-100.dark:bg-zinc-950.text-zinc-900.hidden.lg:flex.justify-center
     {:class "sm:basis-1/2"}
     [:canvas#three-canvas.sticky
-     {:style {:top (/ (get (canvas-dims) 1) 4)}}]]])
+     {:style {:top (/ (get (canvas-dims) 1) 2.5)}}]]])
     
