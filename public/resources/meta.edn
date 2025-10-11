@@ -2,7 +2,7 @@
               :title "R&D Engineering Manager"
               :link "https://meetsmore.com"
               :link-text "MeetsMore"
-              :years "2025-Current"}
+              :years "2025-Now"}
              {:key "flip-cto"
               :title "Chief Technology Officer"
               :link "https://flip.cards"
@@ -22,4 +22,23 @@
               :title "Independent Developer"
               :link nil
               :link-text "Various"
-              :years "2016-2018"}]}
+              :years "2016-2018"}]
+ :currents [{:key "reading"
+             :heading "Reading"
+             :title "A System for Writing by Bob Doto"}
+            {:key "watching"
+             :heading "Watching"
+             :title "Effect Days Conference 2025"}
+            {:key "listening"
+             :heading "Listening"
+             :title "Piano Concerto No. 3 by Rachmaninoff"}]
+ :open-source  [{:title "ClojureScript Project Starter"
+                 :url "https://github.com/harismh/utsb-cljs-starter"}
+                {:title "Data-driven UIs w/ Dumdom"
+                 :url "https://github.com/harismh/todomvc-dumdom"}
+                {:title "Joy of Clojure Code Notes"
+                 :url "https://github.com/harismh/joy-notes"}
+                {:title "React Native Web Track Player"
+                 :url "https://github.com/harismh/react-native-webview-track-player"}
+                {:title "Tokyo Twilight VS Code Theme"
+                 :url "https://github.com/harismh/tokyo-twilight"}]}

@@ -90,123 +90,90 @@
 (defn home [store]
   (let [state (deref store)
         meta (:meta state)
-        positions (:positions meta)]
-    [:<>
-     [:article.flex.flex-col.gap-20
-      [section
-       (paragraph
-        {:c [:span "Hello, I'm Haris. I'm a Software Engineer of 8 years who led the development of a "
-             (anchor {:href "https://flip.cards"
-                      :c "learning start up"
-                      :cl "underline underline-offset-4"
-                      :target "_blank"})
-             [:span " that helped over 2 million users. I now consult independently, specializing
+        positions (:positions meta)
+        currents (:currents meta)
+        open-source (:open-source meta)]
+
+    [:article.flex.flex-col.gap-20
+     [section
+      (paragraph
+       {:c [:span "Hello, I'm Haris. I'm a Software Engineer of 8 years who led the development of a "
+            (anchor {:href "https://flip.cards"
+                     :c "learning start up"
+                     :cl "underline underline-offset-4"
+                     :target "_blank"})
+            [:span " that helped over 2 million users. I now consult independently, specializing
                    in full-stack web development. Outside of work, I enjoy reading, writing,
                    running, and dabbling in "]
-             (anchor {:href "https://clojure.org"
-                      :c "Lisp & Clojure."
-                      :cl "underline underline-offset-4"
-                      :target "_blank"})]})]
+            (anchor {:href "https://clojure.org"
+                     :c "Lisp & Clojure."
+                     :cl "underline underline-offset-4"
+                     :target "_blank"})]})]
+     [:div.flex.flex-col.gap-2
+      (heading {:c "Currently"})
       [:div.flex.flex-col.gap-2
-       (heading {:c "Currently"})
-       [:div.flex.flex-row
-        [:p.text-zinc-500.dark:text-zinc-400.mr-6
-         {:class "w-1/5"}
-         "Reading"]
-        (paragraph {:c "Antifragile by Nassim Nicholas Taleb"
-                    :cl "w-4/5"})]
-       [:div.flex.flex-row
-        [:p.text-zinc-500.dark:text-zinc-400.mr-6
-         {:class "w-1/5"}
-         "Watching"]
-        (paragraph {:c "Building GPT by Andrej Karpathy"
-                    :cl "w-4/5"})]
-       [:div.flex.flex-row
-        [:p.text-zinc-500.dark:text-zinc-400.mr-6
-         {:class "w-1/5"}
-         "Listening"]
-        (paragraph {:c "Symphony No. 7 by Jean Sibelius"
-                    :cl "w-4/5"})]]
-      (section
-       (heading {:c "Work Experience"})
-       [:ul
-        (for [{:keys [key title link link-text years]} positions]
-          [:li.flex.items-center.justify-between
-           {:key key}
-           (paragraph {:c title})
-           [:div.flex.text-zinc-500.dark:text-zinc-400.gap-4
-            (anchor {:href link
-                     :target (when link "_blank")
-                     :c link-text
-                     :cl "underline underline-offset-4 text-zinc-500 dark:text-zinc-400"})
-            [:p years]]])]
-       (paragraph
-        {:c [:span "Download full resume "
-             (anchor {:c "here."
-                      :cl "underline underline-offset-4"
-                      :href "resources/resume.pdf"
-                      :target "_blank"})]}))
-      (section
-       (heading {:c "Open Source"})
-       [:ul
-        [:li
-         (paragraph
-          {:c (anchor
-               {:c "ClojureScript Project Starter"
-                :cl "underline underline-offset-4"
-                :href "https://github.com/harismh/utsb-cljs-starter"
-                :target "_blank"})})]
-        [:li
-         (paragraph
-          {:c (anchor
-               {:c "Data-driven UIs w/ Dumdom"
-                :cl "underline underline-offset-4"
-                :href "https://github.com/harismh/todomvc-dumdom"
-                :target "_blank"})})]
-        [:li
-         (paragraph
-          {:c (anchor
-               {:c "Joy of Clojure Code Notes"
-                :cl "underline underline-offset-4"
-                :href "https://github.com/harismh/joy-notes"
-                :target "_blank"})})]
-        [:li
-         (paragraph
-          {:c (anchor
-               {:c "React Native Web Track Player"
-                :cl "underline underline-offset-4"
-                :href "https://github.com/harismh/react-native-webview-track-player"
-                :target "_blank"})})]
-        [:li
-         (paragraph
-          {:c (anchor
-               {:c "Tokyo Twilight VS Code Theme"
-                :cl "underline underline-offset-4"
-                :href "https://github.com/harismh/tokyo-twilight"
-                :target "_blank"})})]])
-      (section
-       (heading {:c "Connect"})
-       (paragraph {:c [:span "Reach me at "
-                       (anchor {:href "https://github.com/harismh"
-                                :c "@harismh"
-                                :cl "underline underline-offset-4"
-                                :target "_blank"})
-                       [:span " on GitHub or at "]
-                       (anchor {:href ""
-                                :c ""
-                                :cl "underline underline-offset-4"
-                                :id "contact"})]}))
-      (section
-       (heading {:c "Colophon"})
-       (paragraph {:c
-                   [:span "Made with ClojureScript. Fonts are Untitled Sans
+       (for [{:keys [key heading title]} currents]
+         [:div.flex.flex-row
+          {:key key}
+          [:p.text-zinc-500.dark:text-zinc-400.mr-6
+           {:class "w-1/5"}
+           heading]
+          (paragraph {:c title
+                      :cl "w-4/5"})])]]
+     (section
+      (heading {:c "Work Experience"})
+      [:ul
+       (for [{:keys [key title link link-text years]} positions]
+         [:li.flex.items-center.justify-between
+          {:key key}
+          (paragraph {:c title})
+          [:div.flex.text-zinc-500.dark:text-zinc-400.gap-4
+           (anchor {:href link
+                    :target (when link "_blank")
+                    :c link-text
+                    :cl "underline underline-offset-4 text-zinc-500 dark:text-zinc-400"})
+           [:p years]]])]
+      (paragraph
+       {:c [:span "Download full resume "
+            (anchor {:c "here."
+                     :cl "underline underline-offset-4"
+                     :href "resources/resume.pdf"
+                     :target "_blank"})]}))
+     (section
+      (heading {:c "Open Source"})
+      [:ul
+       (for [{:keys [title url]} open-source]
+         [:li
+          {:key url}
+          (paragraph
+           {:c (anchor
+                {:c title
+                 :cl "underline underline-offset-4"
+                 :href url
+                 :target "_blank"})})])])
+     (section
+      (heading {:c "Connect"})
+      (paragraph {:c [:span "Reach me at "
+                      (anchor {:href "https://github.com/harismh"
+                               :c "@harismh"
+                               :cl "underline underline-offset-4"
+                               :target "_blank"})
+                      [:span " on GitHub or at "]
+                      (anchor {:href ""
+                               :c ""
+                               :cl "underline underline-offset-4"
+                               :id "contact"})]}))
+     (section
+      (heading {:c "Colophon"})
+      (paragraph {:c
+                  [:span "Made with ClojureScript. Fonts are Untitled Sans
                           from the Klim Foundry and Plex Sans from IBM.
                           Torus knot made using Three.js. Code is open
                           source at "
-                    (anchor {:href "https://github.com/harismh/site-v4"
-                             :target "_blank"
-                             :cl "underline underline-offset-4"
-                             :c "GitHub."})]}))]]))
+                   (anchor {:href "https://github.com/harismh/site-v4"
+                            :target "_blank"
+                            :cl "underline underline-offset-4"
+                            :c "GitHub."})]}))]))
 
 (def routes
   {:home home
@@ -227,15 +194,14 @@
    [:div.basis-full.bg-zinc-50.dark:bg-zinc-900.text-zinc-100.flex.flex-col.gap-20.p-12.sm:p-20
     {:class "sm:basis-1/2"}
     [:nav.flex.flex-row.gap-8.items-center
-     (heading {:c "Haris Muhammad" :cl "flex-1 text-5xl font-bold"})
-     #_(anchor {:href "#writing" :on-click (route-to! *current-route :writing) :c "Writing"})
-     #_(anchor {:href "#resume" :on-click (route-to! *current-route :resume) :c "Resume"})
-     #_(anchor {:href "#contact" :on-click (route-to! *current-route :contact) :c "Contact"})]
-    [:section
-     (render-route store)]
+     (heading {:c "Haris Muhammad" :cl "flex-1 text-5xl font-bold"})]
+
+    (render-route store)
+
     [:footer.flex.flex-row.gap-4.justify-end
      [:p.text-sm.font-sans.text-zinc-500.dark:text-zinc-400 "© 2025"]
      [:img {:height 20 :width 100 :src "resources/signature.svg" :alt "harism signature"}]]]
+
    [:div.basis-full.bg-zinc-100.dark:bg-zinc-950.text-zinc-900.hidden.lg:flex.justify-center
     {:class "sm:basis-1/2"}
     [:canvas#three-canvas.sticky
