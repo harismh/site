@@ -1,5 +1,5 @@
-{:positions [{:key "meetsmore-em"
-              :title "R&D Engineering Manager"
+{:positions [{:key "meetsmore-rdel"
+              :title "R&D Engineering Lead"
               :link "https://meetsmore.com"
               :link-text "MeetsMore"
               :years "2025-Now"}
@@ -26,12 +26,12 @@
  :currents [{:key "reading"
              :heading "Reading"
              :title "A System for Writing by Bob Doto"}
-            {:key "watching"
-             :heading "Watching"
-             :title "Effect Days Conference 2025"}
             {:key "listening"
              :heading "Listening"
-             :title "Piano Concerto No. 3 by Rachmaninoff"}]
+             :title "Piano Concerto No. 3 by Rachmaninoff"}
+            {:key "watching"
+             :heading "Watching"
+             :title "Effect Days Conference 2025"}]
  :open-source  [{:title "ClojureScript Project Starter"
                  :url "https://github.com/harismh/utsb-cljs-starter"}
                 {:title "Data-driven UIs w/ Dumdom"

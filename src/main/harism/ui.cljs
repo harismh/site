@@ -102,11 +102,14 @@
                      :c "learning start up"
                      :cl "underline underline-offset-4"
                      :target "_blank"})
-            [:span " that helped over 2 million users. I now consult independently, specializing
-                   in full-stack web development. Outside of work, I enjoy reading, writing,
-                   running, and dabbling in "]
+            [:span " that helped over 2 million users. I now work at "]
+            (anchor {:href "https://meetsmore.com"
+                     :c "MeetsMore"
+                     :cl "underline underline-offset-4"
+                     :target "_blank"})
+            [:span ", a Field Service SaaS in Japan. Outside of work, I enjoy reading, writing, running, and dabbling in "]
             (anchor {:href "https://clojure.org"
-                     :c "Lisp & Clojure."
+                     :c "Clojure."
                      :cl "underline underline-offset-4"
                      :target "_blank"})]})]
      [:div.flex.flex-col.gap-2
