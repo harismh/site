@@ -1,0 +1,25 @@
+{:positions [{:key "meetsmore-em"
+              :title "R&D Engineering Manager"
+              :link "https://meetsmore.com"
+              :link-text "MeetsMore"
+              :years "2025-Current"}
+             {:key "flip-cto"
+              :title "Chief Technology Officer"
+              :link "https://flip.cards"
+              :link-text "FLIP"
+              :years "2021-2024"}
+             {:key "flip-cdl"
+              :title "Client Development Lead"
+              :link "https://flip.cards"
+              :link-text "FLIP"
+              :years "2020-2021"}
+             {:key "flip-fsr"
+              :title "Full Stack React Developer"
+              :link "https://flip.cards"
+              :link-text "FLIP"
+              :years "2019-2020"}
+             {:key "indie-dev"
+              :title "Independent Developer"
+              :link nil
+              :link-text "Various"
+              :years "2016-2018"}]}
