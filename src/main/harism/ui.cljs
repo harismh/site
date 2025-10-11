@@ -26,6 +26,10 @@
 (defn unordered-list [& body]
   `[:ul.flex.flex-col.gap-2 ~@body])
 
+(defn footer [& body]
+  `[:footer.flex.flex-row.gap-4.justify-end.items-center.text-sm.font-sans.text-zinc-500.dark:text-zinc-400
+    ~@body])
+
 (defn canvas-dims []
   [(- (/ (.-innerWidth js/window) 2) 25)
    (/ (.-innerHeight js/window) 1.75)])
@@ -204,9 +208,9 @@
 
     (render-route store)
 
-    [:footer.flex.flex-row.gap-4.justify-end
-     [:p.text-sm.font-sans.text-zinc-500.dark:text-zinc-400 "© 2025"]
-     [:img {:height 20 :width 100 :src "resources/signature.svg" :alt "harism signature"}]]]
+    (footer
+     [:p "© 2025"]
+     [:p "ハレイス"])]
 
    [:div.basis-full.bg-zinc-100.dark:bg-zinc-950.text-zinc-900.hidden.lg:flex.justify-center
     {:class "sm:basis-1/2"}
