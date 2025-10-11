@@ -2,7 +2,7 @@
   (:require [harism.three :as three]))
 
 (defn anchor [{:keys [href on-click c cl target id]}]
-  [:a.text-zinc-900.dark:text-zinc-100.hover:text-yellow-500.transition.duration-150
+  [:a.text-zinc-900.dark:text-zinc-100.hover:text-sky-400.transition.duration-150
    {:href href
     :class cl
     :on-click on-click
@@ -53,9 +53,7 @@
           material (three/mesh-material)
           mesh     (three/mesh geometry material)
           renderer (three/renderer width height canvas-id)
-          color    (case (color-scheme)
-                     :dark "rgb(244, 244, 245)"
-                     "rgb(24, 24, 27)")
+          color    "#55A5DA"
           effect   (three/ascii-effect {:color color})
           composer (three/composer renderer scene camera effect)
           orbit    (three/orbit-controls camera (.-domElement renderer))
