@@ -23,6 +23,9 @@
 (defn section [& body]
   `[:div.flex.flex-col.gap-4 ~@body])
 
+(defn unordered-list [& body]
+  `[:ul.flex.flex-col.gap-2 ~@body])
+
 (defn canvas-dims []
   [(- (/ (.-innerWidth js/window) 2) 25)
    (/ (.-innerHeight js/window) 1.75)])
@@ -125,7 +128,7 @@
                       :cl "w-4/5"})])]]
      (section
       (heading {:c "Work Experience"})
-      [:ul
+      (unordered-list
        (for [{:keys [key title link link-text years]} positions]
          [:li.flex.items-center.justify-between
           {:key key}
@@ -135,7 +138,7 @@
                     :target (when link "_blank")
                     :c link-text
                     :cl "underline underline-offset-4 text-zinc-500 dark:text-zinc-400"})
-           [:p years]]])]
+           [:p years]]]))
       (paragraph
        {:c [:span "Download full resume "
             (anchor {:c "here."
@@ -144,7 +147,7 @@
                      :target "_blank"})]}))
      (section
       (heading {:c "Open Source"})
-      [:ul
+      (unordered-list
        (for [{:keys [title url]} open-source]
          [:li
           {:key url}
@@ -153,7 +156,7 @@
                 {:c title
                  :cl "underline underline-offset-4"
                  :href url
-                 :target "_blank"})})])])
+                 :target "_blank"})})])))
      (section
       (heading {:c "Connect"})
       (paragraph {:c [:span "Reach me at "
