@@ -123,7 +123,7 @@
       (heading {:c "Currently"})
       [:div.flex.flex-col.gap-2
        (for [{:keys [key heading title]} currents]
-         [:div.flex.flex-row
+         [:div.flex.flex-row.items-center
           {:key key}
           [:p.text-zinc-500.dark:text-zinc-400.mr-6
            {:class "w-1/5"}
