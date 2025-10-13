@@ -32,7 +32,9 @@
             {:key "watching"
              :heading "Watching"
              :title "Effect Days Conference 2025"}]
- :open-source  [{:title "ClojureScript Project Starter"
+ :open-source  [{:title "Isomorphic data blog concept"
+                 :url "https://github.com/harismh/datablog"}
+                {:title "ClojureScript Project Starter"
                  :url "https://github.com/harismh/utsb-cljs-starter"}
                 {:title "Data-driven UIs w/ Dumdom"
                  :url "https://github.com/harismh/todomvc-dumdom"}
