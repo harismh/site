@@ -2,7 +2,8 @@
   (:require
    [replicant.dom :as r]
    [harism.util :as util]
-   [harism.ui :as ui]))
+   [harism.ui :as ui]
+   [harism.matrix :as matrix]))
 
 (defonce store (atom {}))
 
@@ -25,11 +26,8 @@
     (set! (.-href a$) (str "mailto:" "hello@harism.dev"))
     (set! (.-innerText a$) (str "hello" "@harism.dev."))))
 
-(defn render-knot! []
-  (let [[width height] (ui/canvas-dims)]
-    (ui/render-knot! {:canvas-id "three-canvas"
-                      :width width
-                      :height height})))
+(defn render-matrix! []
+  (matrix/render-matrix! "matrix-canvas"))
 
 (defn render! [state]
   (r/render
@@ -49,8 +47,10 @@
    (fn [_ _ _ next]
      (render! next)))
 
-  (js/setTimeout
+  (js/requestAnimationFrame
    (fn []
-     (hydrate-email!)
-     (render-knot!))
-   100))
+     (js/setTimeout
+      (fn []
+        (hydrate-email!)
+        (render-matrix!))
+      50))))

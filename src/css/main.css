@@ -3,30 +3,92 @@
 @tailwind utilities;
 
 @layer base {
-  @font-face {
-    font-family: 'IBM Plex Serif';
-    font-style: normal;
-    font-weight: 400;
-    font-display: swap;
-    src: url(../resources/ibm-plex-serif.woff2) format('woff2');
-    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-  }
+    @font-face {
+        font-family: "IBM Plex Serif";
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(../resources/ibm-plex-serif.woff2) format("woff2");
+        unicode-range:
+            U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+            U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191,
+            U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
 
-  @font-face {
-    font-family: 'Untitled Sans';
-    font-style: normal;
-    font-weight: 400;
-    font-display: swap;
-    src: url(../resources/untitled-sans-regular.woff2) format('woff2');
-    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-  }  
+    @font-face {
+        font-family: "Untitled Sans";
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(../resources/untitled-sans-regular.woff2) format("woff2");
+        unicode-range:
+            U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+            U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191,
+            U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
 
-  @font-face {
-    font-family: 'Untitled Sans';
-    font-style: normal;
-    font-weight: 700;
-    font-display: swap;
-    src: url(../resources/untitled-sans-bold.woff2) format('woff2');
-    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-  }
+    @font-face {
+        font-family: "Untitled Sans";
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url(../resources/untitled-sans-bold.woff2) format("woff2");
+        unicode-range:
+            U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+            U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191,
+            U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+}
+
+.matrix-rain {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.matrix-column {
+    position: absolute;
+    top: -100vh; /* start off-screen to avoid harsh pop-ins */
+    font-family:
+        SF Mono,
+        ui-monospace,
+        monospace;
+    font-size: 1rem;
+    line-height: 1.5;
+    white-space: nowrap;
+    opacity: 0;
+    color: #55a5da;
+    transition: opacity 0.5s ease-in-out;
+}
+
+@media (prefers-color-scheme: dark) {
+    .matrix-rain {
+        background-color: rgb(9 9 11); /* zinc-950 */
+    }
+
+    .matrix-column {
+        color: #55a5da;
+        text-shadow: 0 0 10px rgba(85, 165, 218, 0.9);
+    }
+}
+
+@keyframes matrix-fall {
+    0% {
+        transform: translateY(0);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.8;
+    }
+    90% {
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateY(200vh);
+        opacity: 0;
+    }
 }

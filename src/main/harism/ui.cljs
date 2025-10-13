@@ -1,5 +1,4 @@
-(ns harism.ui
-  (:require [harism.three :as three]))
+(ns harism.ui)
 
 (defn anchor [{:keys [href on-click c cl target id]}]
   [:a.text-zinc-900.dark:text-zinc-100.hover:text-sky-400.transition.duration-150
@@ -29,51 +28,6 @@
 (defn footer [& body]
   (into [:footer.flex.flex-row.gap-4.justify-end.items-center.text-sm.font-sans.text-zinc-500.dark:text-zinc-400]
         body))
-
-(defn canvas-dims []
-  [(- (/ (.-innerWidth js/window) 2) 25)
-   (/ (.-innerHeight js/window) 1.75)])
-
-(defn color-scheme []
-  (if (.-matches (.matchMedia js/window "(prefers-color-scheme: dark)"))
-    :dark
-    :light))
-
-(defn render-knot! [{:keys [width height canvas-id]}]
-  (when (js/document.getElementById canvas-id)
-    (let [scene    (three/scene)
-          camera   (three/camera 30 (/ width height) 1 100)
-          geometry (three/torus-knot-geometry
-                    {:radius 4
-                     :tube 0.2
-                     :tubular-segments 512
-                     :radial-segments 256
-                     :p 7
-                     :q 10})
-          material (three/mesh-material)
-          mesh     (three/mesh geometry material)
-          renderer (three/renderer width height canvas-id)
-          color    "#55A5DA"
-          effect   (three/ascii-effect {:color color})
-          composer (three/composer renderer scene camera effect)
-          orbit    (three/orbit-controls camera (.-domElement renderer))
-          _        (js/window.addEventListener
-                    "resize"
-                    (fn []
-                      (let [[width' height'] (canvas-dims)]
-                        (.set (.-position camera) 0 0 (* width' 0.05))
-                        (set! (.-aspect camera) (/ width' height'))
-                        (.updateProjectionMatrix camera)
-                        (.setSize composer width' height'))))]
-      (.set (.-position camera) 0 0 (* width 0.05))
-      (set! (.-autoRotate orbit) true)
-      (set! (.-autoRotateSpeed orbit) 2)
-      (set! (.-enableZoom orbit) false)
-      (set! (.-enableDamping  orbit) true)
-      (.add scene camera)
-      (.add scene mesh)
-      (three/animate! orbit composer scene camera)
-      :ok)))
 
 (def spinner-fs
   [:div.grid.h-screen.place-items-center.bg-zinc-50.dark:bg-zinc-900
@@ -200,8 +154,8 @@
     (render state)))
 
 (defn main [state]
-  [:main.grid.md-grid-cols-2.lg:grid-cols-2.lg:w-full.h-screen
-   [:div.basis-full.bg-zinc-50.dark:bg-zinc-900.text-zinc-100.flex.flex-col.gap-20.p-12.sm:p-20
+  [:main.grid.md-grid-cols-2.lg:grid-cols-2.lg:w-full
+   [:div.basis-full.bg-zinc-100.dark:bg-zinc-900.text-zinc-100.flex.flex-col.gap-20.p-12.sm:p-20
     {:class "sm:basis-1/2"}
     [:nav.flex.flex-row.gap-8.items-center
      (heading {:c "Haris Muhammad" :cl "flex-1 text-5xl font-bold"})]
@@ -212,7 +166,5 @@
      [:p "© 2025"]
      [:p "ハレイス"])]
 
-   [:div.basis-full.bg-zinc-100.dark:bg-zinc-950.text-zinc-900.hidden.lg:flex.justify-center
-    {:class "sm:basis-1/2"}
-    [:canvas#three-canvas.sticky
-     {:style {:top (/ (get (canvas-dims) 1) 2.5)}}]]])
+   [:div#matrix-canvas.basis-full.hidden.lg:block
+    {:class "sm:basis-1/2"}]])
