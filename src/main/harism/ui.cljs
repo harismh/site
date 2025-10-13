@@ -12,7 +12,7 @@
 
 (defn paragraph [{:keys [c cl]}]
   [:p.text-zinc-900.dark:text-zinc-100.font-serif
-   {:class (str "text-lg/8 " cl)}
+   {:class (into ["text-lg/8"] (if cl cl []))}
    c])
 
 (defn heading [{:keys [c cl]}]
@@ -50,10 +50,10 @@
             :transition "transform 500ms ease-in-out"}
     :replicant/mounting {:style {:transform "translateX(100%)"}}
     :replicant/unmounting {:style {:transform "translateX(100%)"}}
-    :class "w-full md:w-1/2"}
+    :class ["w-full" "md:w-1/2"]}
    [:nav.flex.flex-row.justify-between.items-center.mt-12
     (heading {:c title
-              :cl "text-4xl font-bold"})
+              :cl ["text-4xl" "font-bold"]})
     (anchor {:href "#"
              :c [:svg {:xmlns "http://www.w3.org/2000/svg"
                        :width "24"
@@ -66,7 +66,7 @@
                        :stroke-linejoin "round"}
                  [:path {:d "M18 6 6 18"}]
                  [:path {:d "m6 6 12 12"}]]
-             :cl "hover:text-sky-400 transition"})]
+             :cl ["hover:text-sky-400" "transition"]})]
    [:aside.flex.flex-col
     body]])
 
@@ -91,17 +91,17 @@
        {:c [:span "Hello, I'm Haris. I'm a Software Engineer of 8 years who led the development of a "
             (anchor {:href "https://flip.cards"
                      :c "learning start up"
-                     :cl "underline underline-offset-4"
+                     :cl ["underline" "underline-offset-4"]
                      :target "_blank"})
             [:span " that helped over 2 million users. I now work at "]
             (anchor {:href "https://meetsmore.com"
                      :c "MeetsMore"
-                     :cl "underline underline-offset-4"
+                     :cl ["underline" "underline-offset-4"]
                      :target "_blank"})
             [:span ", a Field Service SaaS in Japan. Outside of work, I enjoy reading, writing, running, and dabbling in "]
             (anchor {:href "https://clojure.org"
                      :c "Clojure."
-                     :cl "underline underline-offset-4"
+                     :cl ["underline" "underline-offset-4"]
                      :target "_blank"})]}))
      [:div.flex.flex-col.gap-2
       (heading {:c "Currently"})
@@ -113,7 +113,7 @@
            {:class "w-1/5"}
            heading]
           (paragraph {:c title
-                      :cl "w-4/5"})])]]
+                      :cl ["w-4/5"]})])]]
      (section
       (heading {:c "Writing"})
       (unordered-list
@@ -123,7 +123,7 @@
           (paragraph
            {:c (anchor
                 {:c title
-                 :cl "underline underline-offset-4"
+                 :cl ["underline" "underline-offset-4"]
                  :href (str "#writing/" slug)})})
           [:div.flex.text-zinc-500.dark:text-zinc-400.gap-4
            [:p (util/format-date date)]]])))
@@ -138,12 +138,12 @@
            (anchor {:href link
                     :target (when link "_blank")
                     :c link-text
-                    :cl "underline underline-offset-4 text-zinc-500 dark:text-zinc-400"})
+                    :cl ["underline" "underline-offset-4" "text-zinc-500" "dark:text-zinc-400"]})
            [:p years]]]))
       (paragraph
        {:c [:span "Download full resume "
             (anchor {:c "here."
-                     :cl "underline underline-offset-4"
+                     :cl ["underline" "underline-offset-4"]
                      :href "resources/resume.pdf"
                      :target "_blank"})]}))
      (section
@@ -155,7 +155,7 @@
           (paragraph
            {:c (anchor
                 {:c title
-                 :cl "underline underline-offset-4"
+                 :cl ["underline" "underline-offset-4"]
                  :href url
                  :target "_blank"})})])))
      (section
@@ -163,12 +163,12 @@
       (paragraph {:c [:span "Reach me at "
                       (anchor {:href "https://github.com/harismh"
                                :c "@harismh"
-                               :cl "underline underline-offset-4"
+                               :cl ["underline" "underline-offset-4"]
                                :target "_blank"})
                       [:span " on GitHub or at "]
                       (anchor {:href ""
                                :c ""
-                               :cl "underline underline-offset-4"
+                               :cl ["underline" "underline-offset-4"]
                                :id "contact"})]}))
      (section
       (heading {:c "Colophon"})
@@ -176,14 +176,14 @@
                   [:span "Made with ClojureScript and "
                    (anchor {:href "https://replicant.fun"
                             :target "_blank"
-                            :cl "underline underline-offset-4"
+                            :cl ["underline" "underline-offset-4"]
                             :c "Replicant."})
                    " Fonts are Untitled Sans from the Klim Foundry
                    and Plex Sans from IBM. Torus knot made using
                    Three.js. Code is open source at "
                    (anchor {:href "https://github.com/harismh/site-v4"
                             :target "_blank"
-                            :cl "underline underline-offset-4"
+                            :cl ["underline" "underline-offset-4"]
                             :c "GitHub."})]}))]))
 
 (defn main [state]
@@ -193,7 +193,7 @@
      [:div.basis-full.bg-zinc-100.dark:bg-zinc-900.text-zinc-100.flex.flex-col.gap-20.p-12.sm:p-20.overflow-y-auto
       {:class "md:basis-1/2"}
       [:nav.flex.flex-row.gap-8.items-center
-       (heading {:c "Haris Muhammad" :cl "flex-1 text-5xl font-bold"})]
+       (heading {:c "Haris Muhammad" :cl ["flex-1" "text-5xl" "font-bold"]})]
 
       (home state)
 
@@ -202,7 +202,7 @@
        [:p "ハレイス"])]
 
      [:div#matrix-canvas.basis-full.hidden.md:block
-      {:class "md:basis-1/2"}]
+      {:class ["md:basis-1/2"]}]
 
      (when at-writing?
        (writing state))]))
