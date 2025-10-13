@@ -10,6 +10,9 @@ export default {
         sky: {
           400: "#55A5DA",
         },
+        zinc: {
+          100: "#fffff8",
+        },
       },
     },
     fontFamily: {

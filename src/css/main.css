@@ -48,6 +48,7 @@
     overflow: hidden;
     user-select: none;
     -webkit-user-select: none;
+    background-color: #fffff8;
 }
 
 .matrix-column {
@@ -67,7 +68,7 @@
 
 @media (prefers-color-scheme: dark) {
     .matrix-rain {
-        background-color: rgb(9 9 11); /* zinc-950 */
+        background-color: rgb(24, 24, 27);
     }
 
     .matrix-column {
