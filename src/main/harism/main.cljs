@@ -1,22 +1,10 @@
 (ns harism.main
   (:require
-   ["react" :as react]
-   ["react-dom/client" :refer [createRoot]]
-   [reagent.core :as r]
+   [replicant.dom :as r]
    [harism.util :as util]
    [harism.ui :as ui]))
 
-(defonce root (createRoot (js/document.getElementById "root")))
-
-(defonce store (r/atom {}))
-
-(defn ^:dev/after-load render-main!
-  []
-  (.render root
-           (r/as-element
-            [:> react/Suspense
-             {:fallback (r/as-element ui/spinner-fs)}
-             [ui/main store]])))
+(defonce store (atom {}))
 
 (defn reset-fragment! []
   (when-let [fragment (:fragment (util/parse-url
@@ -43,10 +31,23 @@
                       :width width
                       :height height})))
 
+(defn render! [state]
+  (r/render
+   (js/document.getElementById "root")
+   (ui/main state)))
+
+(defn ^:dev/after-load reload! []
+  (render! (deref store)))
+
 (defn ^:export init []
   (init-router!)
   (init-meta!)
-  (render-main!)
+  (render! (deref store))
+
+  (add-watch
+   store ::re-render
+   (fn [_ _ _ next]
+     (render! next)))
 
   (js/setTimeout
    (fn []

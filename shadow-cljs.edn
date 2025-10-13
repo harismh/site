@@ -1,4 +1,4 @@
-{:dependencies [[reagent "1.2.0"]]
+{:dependencies [[no.cjohansen/replicant "2025.06.21"]]
  :source-paths ["src/main" "src/dev"]
  :dev-http {3000 "public"}
  :builds {:site {:target :browser

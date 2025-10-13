@@ -5,7 +5,7 @@
   [:a.text-zinc-900.dark:text-zinc-100.hover:text-sky-400.transition.duration-150
    {:href href
     :class cl
-    :on-click on-click
+    :on (when on-click {:click on-click})
     :target target
     :id id}
    c])
@@ -21,14 +21,14 @@
    c])
 
 (defn section [& body]
-  `[:div.flex.flex-col.gap-4 ~@body])
+  (into [:div.flex.flex-col.gap-4] body))
 
 (defn unordered-list [& body]
-  `[:ul.flex.flex-col.gap-2 ~@body])
+  (into [:ul.flex.flex-col.gap-2] body))
 
 (defn footer [& body]
-  `[:footer.flex.flex-row.gap-4.justify-end.items-center.text-sm.font-sans.text-zinc-500.dark:text-zinc-400
-    ~@body])
+  (into [:footer.flex.flex-row.gap-4.justify-end.items-center.text-sm.font-sans.text-zinc-500.dark:text-zinc-400]
+        body))
 
 (defn canvas-dims []
   [(- (/ (.-innerWidth js/window) 2) 25)
@@ -89,18 +89,17 @@
     [:line {:x1 "32", :y1 "128", :x2 "64", :y2 "128", :stroke-linecap "round", :stroke-linejoin "round", :stroke-width "20"}]
     [:line {:x1 "60.1", :y1 "60.1", :x2 "82.7", :y2 "82.7", :stroke-linecap "round", :stroke-linejoin "round", :stroke-width "20"}]]])
 
-(defn todo [_store]
+(defn todo [_state]
   [:article (paragraph {:c "Under construction."})])
 
-(defn home [store]
-  (let [state (deref store)
-        meta (:meta state)
+(defn home [state]
+  (let [meta (:meta state)
         positions (:positions meta)
         currents (:currents meta)
         open-source (:open-source meta)]
 
     [:article.flex.flex-col.gap-20
-     [section
+     (section
       (paragraph
        {:c [:span "Hello, I'm Haris. I'm a Software Engineer of 8 years who led the development of a "
             (anchor {:href "https://flip.cards"
@@ -116,7 +115,7 @@
             (anchor {:href "https://clojure.org"
                      :c "Clojure."
                      :cl "underline underline-offset-4"
-                     :target "_blank"})]})]
+                     :target "_blank"})]}))
      [:div.flex.flex-col.gap-2
       (heading {:c "Currently"})
       [:div.flex.flex-col.gap-2
@@ -174,10 +173,14 @@
      (section
       (heading {:c "Colophon"})
       (paragraph {:c
-                  [:span "Made with ClojureScript. Fonts are Untitled Sans
-                          from the Klim Foundry and Plex Sans from IBM.
-                          Torus knot made using Three.js. Code is open
-                          source at "
+                  [:span "Made with ClojureScript and "
+                   (anchor {:href "https://replicant.fun"
+                            :target "_blank"
+                            :cl "underline underline-offset-4"
+                            :c "Replicant."})
+                   " Fonts are Untitled Sans from the Klim Foundry
+                   and Plex Sans from IBM. Torus knot made using
+                   Three.js. Code is open source at "
                    (anchor {:href "https://github.com/harismh/site-v4"
                             :target "_blank"
                             :cl "underline underline-offset-4"
@@ -189,22 +192,21 @@
    :projects todo
    :contact todo})
 
-(defn render-route [store]
-  (let [state (deref store)
-        route (:route state)
+(defn render-route [state]
+  (let [route (:route state)
         render (or
                 (get routes route)
                 (:home routes))]
-    (render store)))
+    (render state)))
 
-(defn main [store]
+(defn main [state]
   [:main.grid.md-grid-cols-2.lg:grid-cols-2.lg:w-full.h-screen
    [:div.basis-full.bg-zinc-50.dark:bg-zinc-900.text-zinc-100.flex.flex-col.gap-20.p-12.sm:p-20
     {:class "sm:basis-1/2"}
     [:nav.flex.flex-row.gap-8.items-center
      (heading {:c "Haris Muhammad" :cl "flex-1 text-5xl font-bold"})]
 
-    (render-route store)
+    (render-route state)
 
     (footer
      [:p "© 2025"]
