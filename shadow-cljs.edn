@@ -2,4 +2,7 @@
  :source-paths ["src/main" "src/dev"]
  :dev-http {3000 "public"}
  :builds {:site {:target :browser
+                 :output-dir "public/js"
+                 :asset-path "/js"
+                 :compiler-options {:optimizations :advanced}
                  :modules {:main {:init-fn harism.main/init}}}}}
