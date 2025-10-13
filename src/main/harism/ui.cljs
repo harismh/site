@@ -179,8 +179,7 @@
                             :cl ["underline" "underline-offset-4"]
                             :c "Replicant."})
                    " Fonts are Untitled Sans from the Klim Foundry
-                   and Plex Sans from IBM. Torus knot made using
-                   Three.js. Code is open source at "
+                   and Plex Sans from IBM. Code is open source at "
                    (anchor {:href "https://github.com/harismh/site-v4"
                             :target "_blank"
                             :cl ["underline" "underline-offset-4"]
