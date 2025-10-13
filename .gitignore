@@ -6,7 +6,8 @@
 # JavaScript artifacts
 node_modules
 
-# ClojureScript artifacts
+# Clojure(Script) artifacts
+.cpcache
 .calva
 .shadow-cljs
 .clj-kondo/*

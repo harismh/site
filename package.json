@@ -9,9 +9,12 @@
     "shadow:prod": "bunx shadow-cljs release :site",
     "css:dev": "bunx tailwindcss -i ./src/css/main.css -o ./public/css/main.css --watch",
     "css:prod": "NODE_ENV=production bunx tailwindcss  -i ./src/css/main.css -o ./public/css/main.css --minify",
-    "mkdir:prod": "rm -rf prod && mkdir prod && cp -r public/* prod/ && rm -rf prod/js/cljs-runtime && rm prod/js/manifest.edn"
+    "mkdir:prod": "rm -rf prod && mkdir prod && cp -r public/* prod/ && rm -rf prod/js/cljs-runtime && rm prod/js/manifest.edn",
+    "build-content": "clj -M -m build-content",
+    "format": "clj -Tcljfmt fix"
   },
   "devDependencies": {
+    "@tailwindcss/typography": "^0.5.19",
     "@types/bun": "latest",
     "concurrently": "^9.0.1",
     "shadow-cljs": "^2.28.18",

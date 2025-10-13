@@ -1,4 +1,5 @@
-(ns harism.ui)
+(ns harism.ui
+  (:require [harism.util :as util]))
 
 (defn anchor [{:keys [href on-click c cl target id]}]
   [:a.text-zinc-900.dark:text-zinc-100.hover:text-sky-400.transition.duration-150
@@ -43,8 +44,40 @@
     [:line {:x1 "32", :y1 "128", :x2 "64", :y2 "128", :stroke-linecap "round", :stroke-linejoin "round", :stroke-width "20"}]
     [:line {:x1 "60.1", :y1 "60.1", :x2 "82.7", :y2 "82.7", :stroke-linecap "round", :stroke-linejoin "round", :stroke-width "20"}]]])
 
-(defn todo [_state]
-  [:article (paragraph {:c "Under construction."})])
+(defn panel [title & body]
+  [:div.panel-slide.fixed.top-0.h-screen.overflow-y-auto.p-10.z-10.bg-zinc-100.dark:bg-zinc-900
+   {:style {:transform "translateX(0)"
+            :transition "transform 500ms ease-in-out"}
+    :replicant/mounting {:style {:transform "translateX(100%)"}}
+    :replicant/unmounting {:style {:transform "translateX(100%)"}}
+    :class "w-full md:w-1/2"}
+   [:nav.flex.flex-row.justify-between.items-center.mt-12
+    (heading {:c title
+              :cl "text-4xl font-bold"})
+    (anchor {:href "#"
+             :c [:svg {:xmlns "http://www.w3.org/2000/svg"
+                       :width "24"
+                       :height "24"
+                       :viewBox "0 0 24 24"
+                       :fill "none"
+                       :stroke "currentColor"
+                       :stroke-width "2"
+                       :stroke-linecap "round"
+                       :stroke-linejoin "round"}
+                 [:path {:d "M18 6 6 18"}]
+                 [:path {:d "m6 6 12 12"}]]
+             :cl "hover:text-sky-400 transition"})]
+   [:aside.flex.flex-col
+    body]])
+
+(defn writing [state]
+  (let [route (:route state)
+        slug (:slug route)
+        content (get-in state [:content slug])]
+    (panel
+     (:title content)
+     (into [:div.prose.prose-lg.dark:prose-invert.max-w-none.font-serif.mt-20]
+           (:body content)))))
 
 (defn home [state]
   (let [meta (:meta state)
@@ -81,6 +114,19 @@
            heading]
           (paragraph {:c title
                       :cl "w-4/5"})])]]
+     (section
+      (heading {:c "Writing"})
+      (unordered-list
+       (for [{:keys [slug title date]} (:index state)]
+         [:li.flex.items-center.justify-between
+          {:key key}
+          (paragraph
+           {:c (anchor
+                {:c title
+                 :cl "underline underline-offset-4"
+                 :href (str "#writing/" slug)})})
+          [:div.flex.text-zinc-500.dark:text-zinc-400.gap-4
+           [:p (util/format-date date)]]])))
      (section
       (heading {:c "Work Experience"})
       (unordered-list
@@ -140,31 +186,23 @@
                             :cl "underline underline-offset-4"
                             :c "GitHub."})]}))]))
 
-(def routes
-  {:home home
-   :writing todo
-   :projects todo
-   :contact todo})
-
-(defn render-route [state]
-  (let [route (:route state)
-        render (or
-                (get routes route)
-                (:home routes))]
-    (render state)))
-
 (defn main [state]
-  [:main.grid.md-grid-cols-2.lg:grid-cols-2.lg:w-full
-   [:div.basis-full.bg-zinc-100.dark:bg-zinc-900.text-zinc-100.flex.flex-col.gap-20.p-12.sm:p-20
-    {:class "sm:basis-1/2"}
-    [:nav.flex.flex-row.gap-8.items-center
-     (heading {:c "Haris Muhammad" :cl "flex-1 text-5xl font-bold"})]
+  (let [route (:route state)
+        at-writing? (util/at-page? route :writing)]
+    [:main.grid.md:grid-cols-2.lg:grid-cols-2.lg:w-full.h-screen.overflow-hidden
+     [:div.basis-full.bg-zinc-100.dark:bg-zinc-900.text-zinc-100.flex.flex-col.gap-20.p-12.sm:p-20.overflow-y-auto
+      {:class "md:basis-1/2"}
+      [:nav.flex.flex-row.gap-8.items-center
+       (heading {:c "Haris Muhammad" :cl "flex-1 text-5xl font-bold"})]
 
-    (render-route state)
+      (home state)
 
-    (footer
-     [:p "© 2025"]
-     [:p "ハレイス"])]
+      (footer
+       [:p "© 2025"]
+       [:p "ハレイス"])]
 
-   [:div#matrix-canvas.basis-full.hidden.lg:block
-    {:class "sm:basis-1/2"}]])
+     [:div#matrix-canvas.basis-full.hidden.md:block
+      {:class "md:basis-1/2"}]
+
+     (when at-writing?
+       (writing state))]))

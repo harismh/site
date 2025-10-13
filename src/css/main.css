@@ -93,3 +93,22 @@
         opacity: 0;
     }
 }
+
+.panel-slide {
+    left: 0;
+}
+
+@media (min-width: 768px) {
+    .panel-slide {
+        left: 50%;
+    }
+}
+
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4,
+.prose h5,
+.prose h6 {
+    font-family: "Untitled Sans", ui-sans-serif, system-ui, sans-serif;
+}

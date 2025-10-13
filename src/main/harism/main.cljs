@@ -7,19 +7,35 @@
 
 (defonce store (atom {}))
 
-(defn reset-fragment! []
+(defn fetch-content! [slug]
+  (when-not (get-in (deref store) [:content slug])
+    (util/fetch-edn
+     (str "resources/content/" slug ".edn")
+     (fn [edn] (swap! store assoc-in [:content slug] edn)))))
+
+(defn route-fragment! []
   (when-let [fragment (:fragment (util/parse-url
                                   (str (.-location js/window))))]
-    (swap! store assoc :route (util/keywordize-fragment fragment))))
+    (let [route (util/keywordize-fragment fragment)]
+      (swap! store assoc :route route)
+      (when (util/at-page? route :writing)
+        (fetch-content! (:slug route))))))
 
 (defn init-router! []
-  (reset-fragment!)
-  (js/window.addEventListener "hashchange" reset-fragment!))
+  (route-fragment!)
+  (js/window.addEventListener
+   "hashchange"
+   route-fragment!))
 
 (defn init-meta! []
   (util/fetch-edn
    "resources/meta.edn"
    (fn [edn] (swap! store assoc :meta edn))))
+
+(defn init-content! []
+  (util/fetch-edn
+   "resources/content/index.edn"
+   (fn [edn] (swap! store assoc :index edn))))
 
 (defn hydrate-email! []
   (when-let [a$ (js/document.getElementById "contact")]
@@ -40,6 +56,7 @@
 (defn ^:export init []
   (init-router!)
   (init-meta!)
+  (init-content!)
   (render! (deref store))
 
   (add-watch

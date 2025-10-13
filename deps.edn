@@ -1,0 +1,4 @@
+{:paths ["."]
+ :deps {mapdown/mapdown {:mvn/version "0.2.1"}
+        markdown-clj/markdown-clj {:mvn/version "1.11.4"}
+        enlive/enlive {:mvn/version "1.1.6"}}}
