@@ -67,4 +67,4 @@
   (js/requestAnimationFrame
    (fn []
      (hydrate-email!)
-     (render-matrix!)))
+     (render-matrix!))))
