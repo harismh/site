@@ -66,8 +66,5 @@
 
   (js/requestAnimationFrame
    (fn []
-     (js/setTimeout
-      (fn []
-        (hydrate-email!)
-        (render-matrix!))
-      50))))
+     (hydrate-email!)
+     (render-matrix!)))
