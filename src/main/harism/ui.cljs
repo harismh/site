@@ -12,7 +12,7 @@
 
 (defn paragraph [{:keys [c cl]}]
   [:p.text-zinc-900.dark:text-zinc-100.font-serif
-   {:class (into ["text-lg/8"] (if cl cl []))}
+   {:class cl}
    c])
 
 (defn heading [{:keys [c cl]}]
@@ -178,8 +178,7 @@
                             :target "_blank"
                             :cl ["underline" "underline-offset-4"]
                             :c "Replicant."})
-                   " Fonts are Untitled Sans from the Klim Foundry
-                   and Plex Serif from IBM. Code is open source at "
+                   " Fonts are Satoshi and Erode. Code is open source at "
                    (anchor {:href "https://github.com/harismh/site-v4"
                             :target "_blank"
                             :cl ["underline" "underline-offset-4"]

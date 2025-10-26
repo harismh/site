@@ -13,13 +13,13 @@ export default {
         zinc: {
           100: "#fffff8",
           500: "#777777",
-          900: "#111111",
+          900: "var(--zinc-900)",
         },
       },
     },
     fontFamily: {
       sans: [
-        "Untitled Sans",
+        "Satoshi",
         "ui-sans-serif",
         "system-ui",
         "sans-serif",
@@ -29,7 +29,7 @@ export default {
         "Noto Color Emoji",
       ],
       serif: [
-        "IBM Plex Serif",
+        "Erode",
         "ui-serif",
         "Georgia",
         "Cambria",
