@@ -173,16 +173,21 @@
      (section
       (heading {:c "Colophon"})
       (paragraph {:c
-                  [:span "Made with ClojureScript and "
+                  [:span "Made with "
+                   (anchor {:href "https://clojurescript.org"
+                            :target "_blank"
+                            :cl ["underline" "underline-offset-4"]
+                            :c "ClojureScript"}) " and "
                    (anchor {:href "https://replicant.fun"
                             :target "_blank"
                             :cl ["underline" "underline-offset-4"]
-                            :c "Replicant."})
-                   " Fonts are Satoshi and Erode. Code is open source at "
+                            :c "Replicant"})
+                   ". Fonts are Satoshi and Erode. Code is open source at "
                    (anchor {:href "https://github.com/harismh/site-v4"
                             :target "_blank"
                             :cl ["underline" "underline-offset-4"]
-                            :c "GitHub."})]}))]))
+                            :c "GitHub"})
+                   "."]}))]))
 
 (defn main [state]
   (let [route (:route state)
