@@ -6,6 +6,6 @@ View it at [harism.dev](https://harism.dev). The basis was my own [ClojureScript
 
 ## Lighthouse audit
 
-<img width="458" alt="Screenshot 2024-11-04 at 18 13 17" src="https://github.com/user-attachments/assets/978d3638-27bc-480c-8bc0-4c6e647b2e21">
+![Screenshot 2025-10-26 at 17 44 06](https://github.com/user-attachments/assets/b9f61147-3252-42e8-87c5-0e4b6ea74332)
 
-_As of Nov. 4th, 2024_
+_As of 2025/10/26. Report: https://pagespeed.web.dev/analysis/https-harism-dev/bfgqsksyi6?form_factor=desktop_
