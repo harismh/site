@@ -3,19 +3,21 @@
   "module": "index.ts",
   "type": "module",
   "scripts": {
-    "dev": "concurrently \"bun shadow:dev\" \"bun css:dev\"",
+    "dev": "concurrently \"bun shadow:dev\" \"bun css:dev\" \"bun content:dev\"",
     "prod": "bun shadow:prod && bun css:prod && bun mkdir:prod",
     "shadow:dev": "bunx shadow-cljs watch :site",
     "shadow:prod": "bunx shadow-cljs release :site",
     "css:dev": "bunx tailwindcss -i ./src/css/main.css -o ./public/css/main.css --watch",
     "css:prod": "NODE_ENV=production bunx tailwindcss  -i ./src/css/main.css -o ./public/css/main.css --minify",
     "mkdir:prod": "rm -rf prod && mkdir prod && cp -r public/* prod/ && rm -rf prod/js/cljs-runtime && rm prod/js/manifest.edn",
-    "build-content": "clj -M -m build-content",
+    "content": "clj -M -m build-content",
+    "content:dev": "bun content && chokidar 'content/**/*.md' -c 'bun content'",
     "format": "clj -Tcljfmt fix"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.19",
     "@types/bun": "latest",
+    "chokidar-cli": "^3.0.0",
     "concurrently": "^9.0.1",
     "shadow-cljs": "^3.2.1",
     "tailwindcss": "^3.4.14"
