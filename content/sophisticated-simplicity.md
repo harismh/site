@@ -3,7 +3,7 @@
 :date 2025-01-13T23:24:00
 :body
 
-Things that just work often rely on sophisticated implementations. Behind their simple veneers lies deep design.
+Things that just work often rely on sophisticated implementations. But behind their simple veneers lies deep design.
 
 Multi-touch on the iPhone is a classic example. The gestures feel completely natural, but underneath are signal-processing algorithms, gesture recognition systems, and many other components working in concert to create that effortless illusion.
 
