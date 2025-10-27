@@ -35,14 +35,6 @@
         src: url(../resources/erode-italic.ttf) format("truetype");
     }
 
-    @font-face {
-        font-family: "Fira Code";
-        font-style: normal;
-        font-weight: 100 900;
-        font-display: swap;
-        src: url(../resources/fira-code.ttf) format("truetype");
-    }
-
     :root {
         --zinc-900: #10100e;
     }
