@@ -2,6 +2,7 @@
   (:require [mapdown.core :as mapdown]
             [clojure.java.io :as io]
             [clojure.string :as str]
+            [clojure.walk :as walk]
             [markdown.core :as md]
             [net.cgrand.enlive-html :as html]))
 
@@ -27,12 +28,45 @@
 (defn markdown->hiccup [md-text]
   (html->hiccup (md/md-to-html-string md-text)))
 
+(defn external-link? [href]
+  (boolean (and href (re-matches #"(?i)(?:https?:)?//.*" href))))
+
+(defn apply-rules-to-node [node rules]
+  (if (and (vector? node) (keyword? (first node)))
+    (let [tag (first node)
+          tail (rest node)
+          attrs? (map? (first tail))
+          attrs (when attrs? (first tail))
+          children (if attrs?
+                     (rest tail)
+                     tail)
+          updated-attrs
+          (reduce (fn [acc rule]
+                    (rule tag acc)) attrs rules)
+          base (if updated-attrs
+                 [tag updated-attrs]
+                 [tag])]
+      (into base children))
+    node))
+
+(defn apply-rules-to-tree [tree rules]
+  (mapv #(walk/postwalk
+          (fn [node] (apply-rules-to-node node rules)) %)
+        tree))
+
+(defn anchor-target-rule [tag attrs]
+  (if (and (= :a tag) (external-link? (:href attrs)))
+    (assoc (or attrs {}) :target "_blank")
+    attrs))
+
 (defn process-markdown-file [file]
   (let [content (slurp file)
         parsed (mapdown/parse content)
         filename (.getName file)
         slug (or (:slug parsed) (slugify filename))
-        body-hiccup (markdown->hiccup (:body parsed))
+        body-hiccup (apply-rules-to-tree
+                     (markdown->hiccup (:body parsed))
+                     [anchor-target-rule])
         output-data (assoc parsed :body body-hiccup)
         output-file (io/file "public/resources/content" (str slug ".edn"))]
     (println "\t" filename "→" (.getName output-file))
