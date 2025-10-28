@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "concurrently \"bun shadow:dev\" \"bun css:dev\" \"bun content:dev\"",
     "prod": "bun content && bun shadow:prod && bun css:prod && bun mkdir:prod && echo \"Finished production build.\"",
+    "deploy": "bun prod && ./deploy.sh",
     "shadow:dev": "bunx shadow-cljs watch :site",
     "shadow:prod": "bunx shadow-cljs release :site",
     "css:dev": "bunx tailwindcss -i ./src/css/main.css -o ./public/css/main.css --watch",
