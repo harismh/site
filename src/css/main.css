@@ -34,26 +34,33 @@
         font-display: swap;
         src: url(../resources/erode-italic.ttf) format("truetype");
     }
+}
 
-    :root {
-        --zinc-900: #10100e;
+:root {
+    --zinc-900: #10100e;
+}
+
+.dark {
+    --zinc-900: #ffffe3;
+}
+
+@supports (-webkit-font-smoothing: antialiased) {
+    body {
+        -webkit-font-smoothing: antialiased;
+        font-weight: 450;
     }
+}
 
-    .dark {
-        --zinc-900: #ffffe3;
-    }
-
-    :where(p, a, h1):where(
-        :not(
-            :is(
-                [class*="text-sm"],
-                [class*="text-zinc-500"],
-                [class*="text-zinc-400"] *
-            )
+:where(p, a, h1):where(
+    :not(
+        :is(
+            [class*="text-sm"],
+            [class*="text-zinc-500"],
+            [class*="text-zinc-400"] *
         )
-    ) {
-        font-size: 1.25rem; /* workaround for tailwind */
-    }
+    )
+) {
+    font-size: 1.25rem; /* workaround for tailwind */
 }
 
 .matrix-rain {
@@ -131,6 +138,12 @@
 
 .prose a {
     font-weight: normal;
+}
+
+@supports (-webkit-font-smoothing: antialiased) {
+    .prose a {
+        font-weight: 450;
+    }
 }
 
 /*.prose a[target="_blank"]::after {
