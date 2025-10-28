@@ -128,3 +128,29 @@
 .prose h6 {
     font-family: "Satoshi", ui-sans-serif, system-ui, sans-serif;
 }
+
+.prose a {
+    font-weight: normal;
+}
+
+/*.prose a[target="_blank"]::after {
+    content: "";
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    background-color: #10100e;
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 7h10v10'/%3E%3Cpath d='M7 17 17 7'/%3E%3C/svg%3E");
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 7h10v10'/%3E%3Cpath d='M7 17 17 7'/%3E%3C/svg%3E");
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-size: 100% 100%;
+    mask-size: 100% 100%;
+    vertical-align: -0.3em;
+    margin-left: -0.1em;
+}
+
+@media (prefers-color-scheme: dark) {
+    .prose a[target="_blank"]::after {
+        background-color: #ffffe3;
+    }
+}*/

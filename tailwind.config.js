@@ -13,8 +13,37 @@ export default {
         zinc: {
           100: "#fffff8",
           500: "#777777",
-          900: "var(--zinc-900)",
+          900: "#10100e",
         },
+      },
+      typography: () => {
+        const makeTheme = (color) => ({
+          color,
+          "--tw-prose-body": color,
+          "--tw-prose-headings": color,
+          "--tw-prose-lead": color,
+          "--tw-prose-links": color,
+          "--tw-prose-bold": color,
+          "--tw-prose-counters": color,
+          "--tw-prose-bullets": color,
+          "--tw-prose-hr": color,
+          "--tw-prose-quotes": color,
+          "--tw-prose-quote-borders": color,
+          "--tw-prose-captions": color,
+          "--tw-prose-code": color,
+          "--tw-prose-pre-code": color,
+          "--tw-prose-th-borders": color,
+          "--tw-prose-td-borders": color,
+        });
+
+        return {
+          DEFAULT: {
+            css: makeTheme("#10100e"),
+          },
+          invert: {
+            css: makeTheme("#fffff8"),
+          },
+        };
       },
     },
     fontFamily: {
