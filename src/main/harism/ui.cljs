@@ -117,14 +117,15 @@
      (section
       (heading {:c "Writing"})
       (unordered-list
-       (for [{:keys [slug title date]} (:index state)]
+       (for [{:keys [slug title date url]} (:index state)]
          [:li.flex.items-center.justify-between
           {:key key}
           (paragraph
            {:c (anchor
                 {:c title
                  :cl ["underline" "underline-offset-4"]
-                 :href (str "#writing/" slug)})})
+                 :href (or url (str "#writing/" slug))
+                 :target (when url "_blank")})})
           [:div.flex.text-zinc-500.dark:text-zinc-400.gap-4
            [:p (util/format-date date)]]])))
      (section

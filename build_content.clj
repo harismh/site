@@ -75,6 +75,8 @@
     {:slug slug
      :title (:title parsed)
      :date (:date parsed)
+     :url (:url parsed)
+     :kind (or (keyword (:kind parsed)) :writing)
      :description (:description parsed)}))
 
 (defn -main []
