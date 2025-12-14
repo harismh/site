@@ -38,6 +38,7 @@
 
 :root {
     --zinc-900: #10100e;
+    --default-font-size: 1.25rem;
 }
 
 .dark {
@@ -60,7 +61,7 @@
         )
     )
 ) {
-    font-size: 1.25rem; /* workaround for tailwind */
+    font-size: var(--default-font-size); /* workaround for tailwind */
 }
 
 .matrix-rain {
@@ -138,6 +139,10 @@
 
 .prose a {
     font-weight: normal;
+}
+
+.prose ul {
+    font-size: var(--default-font-size);
 }
 
 @supports (-webkit-font-smoothing: antialiased) {

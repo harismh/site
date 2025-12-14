@@ -43,5 +43,6 @@
   (let [date (js/Date. date-string)
         year (.getFullYear date)
         month (get month-names (.getMonth date))
-        day (.getDate date)]
-    (str year " " month " " day)))
+        day (str (.getDate date))
+        day-to-use (if (= (count day) 1) (str "0" day) day)]
+    (str year " " month " " day-to-use)))
