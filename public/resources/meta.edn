@@ -25,13 +25,13 @@
               :years "2016-2018"}]
  :currents [{:key "reading"
              :heading "Reading"
-             :title "A System for Writing by Bob Doto"}
+             :title "Technopoly by Neil Postman"}
             {:key "listening"
              :heading "Listening"
-             :title "Piano Concerto No. 3 by Rachmaninoff"}
+             :title "Spiritdance by Aethoro"}
             {:key "watching"
              :heading "Watching"
-             :title "Effect Days Conference 2025"}]
+             :title "Amadeus (1984) by Miloš Forman"}]
  :open-source  [{:title "Isomorphic data blog concept"
                  :url "https://github.com/harismh/datablog"}
                 {:title "ClojureScript Project Starter"
