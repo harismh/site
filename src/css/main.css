@@ -120,6 +120,9 @@
 
 .panel-slide {
     left: 0;
+    height: 100dvh;
+    padding-top: calc(1rem + env(safe-area-inset-top));
+    padding-bottom: calc(1rem + env(safe-area-inset-bottom));
 }
 
 @media (min-width: 768px) {
