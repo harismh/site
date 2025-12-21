@@ -50,7 +50,7 @@
    (js/document.getElementById "root")
    (ui/main state)))
 
-(defn ^:dev/after-load reload! []
+(defn ^:dev/after-load ^:private _reload! []
   (render! (deref store)))
 
 (defn ^:export init []

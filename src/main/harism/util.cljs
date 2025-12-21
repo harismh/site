@@ -25,14 +25,12 @@
   (= page (:type route)))
 
 (defn fetch-edn [url callback]
-  (let [promise
-        (js/fetch url)
-        handler
-        (fn [response]
-          (if (= (.-status response) 200)
-            (.then (.text response)
-                   (fn [text] (callback (edn/read-string text))))
-            (throw (js/Error. response))))]
+  (let [promise (js/fetch url)
+        handler (fn [response]
+                  (if (= (.-status response) 200)
+                    (-> (.text response)
+                        (.then #(callback (edn/read-string %))))
+                    (throw (js/Error. response))))]
     (.then promise handler)))
 
 (def month-names

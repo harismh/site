@@ -30,20 +30,6 @@
   (into [:footer.flex.flex-row.gap-4.justify-end.items-center.text-sm.font-sans.text-zinc-500.dark:text-zinc-400]
         body))
 
-(def spinner-fs
-  [:div.grid.h-screen.place-items-center.bg-zinc-50.dark:bg-zinc-900
-   {:aria-label "Loading..." :role "status"}
-   [:svg.h-10.w-10.stroke-zinc-900.dark:stroke-zinc-100
-    {:view-box "0 0 256 256"}
-    [:line {:x1 "128", :y1 "32", :x2 "128", :y2 "64", :stroke-linecap "round", :stroke-linejoin "round", :stroke-width "20"}]
-    [:line {:x1 "195.9", :y1 "60.1", :x2 "173.3", :y2 "82.7", :stroke-linecap "round", :stroke-linejoin "round", :stroke-width "20"}]
-    [:line {:x1 "224", :y1 "128", :x2 "192", :y2 "128", :stroke-linecap "round", :stroke-linejoin "round", :stroke-width "20"}]
-    [:line {:x1 "195.9", :y1 "195.9", :x2 "173.3", :y2 "173.3", :stroke-linecap "round", :stroke-linejoin "round", :stroke-width "20"}]
-    [:line {:x1 "128", :y1 "224", :x2 "128", :y2 "192", :stroke-linecap "round", :stroke-linejoin "round", :stroke-width "20"}]
-    [:line {:x1 "60.1", :y1 "195.9", :x2 "82.7", :y2 "173.3", :stroke-linecap "round", :stroke-linejoin "round", :stroke-width "20"}]
-    [:line {:x1 "32", :y1 "128", :x2 "64", :y2 "128", :stroke-linecap "round", :stroke-linejoin "round", :stroke-width "20"}]
-    [:line {:x1 "60.1", :y1 "60.1", :x2 "82.7", :y2 "82.7", :stroke-linecap "round", :stroke-linejoin "round", :stroke-width "20"}]]])
-
 (defn panel [title & body]
   [:div.panel-slide.fixed.top-0.h-screen.overflow-y-auto.p-10.z-10.bg-zinc-100.dark:bg-zinc-900
    {:style {:transform "translateX(0)"
